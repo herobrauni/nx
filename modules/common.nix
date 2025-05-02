@@ -25,6 +25,7 @@
   # Common system packages that should be available on all hosts
   environment.systemPackages = with pkgs; [
     # Basic utilities
+    git
     wget
     nano
     btop
