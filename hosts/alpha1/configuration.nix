@@ -40,6 +40,14 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
+    interfaces.eth0.ipv4.addresses = [{
+      address = "104.152.49.57";
+      prefixLength = 25;
+    }];
+    defaultGateway = {
+      address = "104.152.49.";
+      interface = "eth0";
+    };
     interfaces.eth0.ipv6.addresses = [{
       address = "2602:fc16:2:3ab::b459";
       prefixLength = 64;
