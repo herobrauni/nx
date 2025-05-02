@@ -32,6 +32,7 @@
     htop
     fio
     iperf
+    ncdu
     # geekbench
     # geekbench_4
     # geekbench_5
