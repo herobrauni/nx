@@ -28,6 +28,7 @@
     wget
     nano
     btop
+    gtop
     htop
     fio
     iperf
