@@ -4,8 +4,8 @@
   sops.secrets.tskey-auth-bf = { };
   services.tailscale.authKeyFile = "/run/secrets/tskey-auth-bf";
   imports = [
-    (nixpkgs.outPath + "/nixos/modules/profiles/minimal.nix")
-    (nixpkgs.outPath + "/nixos/modules/profiles/headless.nix")
-    (nixpkgs.outPath + "/nixos/modules/profiles/perlless.nix")
+    (inputs.nixpkgs.outPath + "/nixos/modules/profiles/minimal.nix")
+    (inputs.nixpkgs.outPath + "/nixos/modules/profiles/headless.nix")
+    (inputs.nixpkgs.outPath + "/nixos/modules/profiles/perlless.nix")
   ];
 }
