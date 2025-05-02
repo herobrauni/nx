@@ -45,7 +45,7 @@
       prefixLength = 25;
     }];
     defaultGateway = {
-      address = "104.152.49.";
+      address = "104.152.49.1";
       interface = "eth0";
     };
     interfaces.eth0.ipv6.addresses = [{
