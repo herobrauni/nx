@@ -118,6 +118,7 @@
     enable = true;
     useRoutingFeatures = "both";
     extraSetFlags = [ "--ssh" ];
-    extraUpFlags = [ "--ssh" "--reset" ];
+    extraUpFlags =
+      [ "--ssh" "--reset" "--hostname=${config.networking.hostName}" ];
   };
 }
