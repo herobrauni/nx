@@ -1,0 +1,25 @@
+# This is your sops configuration file
+# It defines which keys are used to encrypt/decrypt your secrets
+
+keys:
+  # Admin users (replace with your actual keys)
+  - &admin_key age1wgkwm0l33qxclrfkgd7fsvw0zz4lw74xsqqrrkrka83nudwrwdcqqul9mz
+
+  # Host keys (replace with your actual host keys)
+  # You can get the age public key from your host's SSH key with:
+  # `ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub`
+  - &terabit1 age1ccc92vh5jvp05zautxvu4hkw4mxkcwmjyle4p4gn8975u5a36gksgmw0q3
+  - &deluxhost1 age1v2npyaz98r74l84s5aq94sljdfmwh6u0eez258ska2se9x2t8qsspttxs6
+  # Add more hosts as needed
+  # - &host2 age1anotherhost
+
+# Define creation rules for the single secrets file
+creation_rules:
+  - path_regex: .*\.sops\.ya?ml
+    key_groups:
+      - age:
+          - *admin_key
+          - *terabit1
+          - *deluxhost1
+        # Add more hosts as needed
+        # - *host2
