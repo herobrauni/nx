@@ -105,7 +105,7 @@
   # Enable automatic updates for security
   system.autoUpgrade = {
     enable = true;
-    flake = "github:herobrauni/nixos";
+    flake = "github:herobrauni/nx";
     flags = [
       "-L" # print build logs
     ];
