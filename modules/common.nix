@@ -32,9 +32,9 @@
     htop
     fio
     iperf
-    geekbench
-    geekbench_4
-    geekbench_5
+    # geekbench
+    # geekbench_4
+    # geekbench_5
   ];
 
   # SSH server configuration (common for all servers)
