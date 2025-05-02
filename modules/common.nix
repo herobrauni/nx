@@ -72,11 +72,32 @@
       dates = [ "weekly" ];
     };
 
-    # Enable flakes
+    # Enable flakes and configure binary cache
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      
+      # Add Garnix as a substituter
+      substituters = [
+        "https://cache.garnix.io"
+        "https://cache.nixos.org"  # Keep the default cache
+      ];
+      
+      # Add Garnix's public key to trusted keys
+      trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="  # Default NixOS key
+      ];
+      
+      # Ensure binary caches are used
+      builders-use-substitutes = true;
     };
+    
+    # Additional options to prefer binary cache
+    extraOptions = ''
+      # Prefer binary cache over building
+      fallback = true
+    '';
   };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

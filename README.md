@@ -188,3 +188,69 @@ If you need to add or remove a key:
 ## More Information
 
 For more detailed information, refer to the [sops-nix documentation](https://github.com/Mic92/sops-nix).
+
+# Binary Cache Configuration with Garnix
+
+This repository is configured to use [Garnix](https://garnix.io/) as a binary cache to speed up builds on low-spec VPS servers. This significantly reduces build times by downloading pre-built packages instead of building them locally.
+
+## How It's Configured
+
+The binary cache is configured in the system-level configuration file:
+
+**System-level configuration** in `modules/common.nix`:
+   ```nix
+   nix.settings = {
+     substituters = [
+       "https://cache.garnix.io"
+       "https://cache.nixos.org"
+     ];
+     trusted-public-keys = [
+       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+     ];
+     builders-use-substitutes = true;
+   };
+   
+   nix.extraOptions = ''
+     fallback = true
+   '';
+   ```
+
+## Verifying Cache Usage
+
+To verify that your servers are using the Garnix cache:
+
+1. Check the Nix configuration:
+   ```bash
+   nix show-config | grep substituters
+   nix show-config | grep trusted-public-keys
+   ```
+
+2. Watch for cache downloads during builds. You should see messages indicating downloads from `cache.garnix.io`.
+
+3. Compare build times before and after implementing the cache.
+
+## Troubleshooting
+
+If you're not seeing improved build times:
+
+1. Verify the cache is configured correctly:
+   ```bash
+   nix show-config | grep substituters
+   nix show-config | grep trusted-public-keys
+   ```
+
+2. Check if your packages are available in the cache:
+   ```bash
+   nix path-info --store https://cache.garnix.io <package-path>
+   ```
+
+3. Increase log verbosity temporarily by adding to your `nix.extraOptions`:
+   ```nix
+   nix.extraOptions = ''
+     narinfo-cache-negative-ttl = 0
+     verbose = 1
+   '';
+   ```
+
+For more information about Garnix, visit the [Garnix documentation](https://garnix.io/docs/).
