@@ -3,7 +3,7 @@
     "NixOS configuration for multiple servers (dynamic host discovery)";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nix doesn't need the full history, this should be the default ¯\_(ツ)_/¯
     # nixpkgs.url =
     #   "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
