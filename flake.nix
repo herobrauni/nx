@@ -3,7 +3,10 @@
     "NixOS configuration for multiple servers (dynamic host discovery)";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "nixpkgs/nixos-unstable";
+    # nix doesn't need the full history, this should be the default ¯\_(ツ)_/¯
+    nixpkgs.url =
+      "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
     sops-nix.url = "github:Mic92/sops-nix";
     # Optional: make sops-nix use the same nixpkgs as we do
