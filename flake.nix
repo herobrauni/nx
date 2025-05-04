@@ -55,6 +55,7 @@
         in getHostIP;
       }) hostDirs);
 
+
       nixosConfigurations = builtins.listToAttrs (builtins.map (hostName: {
         name = hostName;
         value = nixpkgs.lib.nixosSystem {
