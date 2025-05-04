@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   sops.secrets.nezha-client-secret = { };
+  networking.domain = "brill-bebop.ts.net";
 
   services.nezha-agent = {
     enable = true;
