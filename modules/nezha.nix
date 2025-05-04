@@ -9,7 +9,7 @@
     genUuid = true;
     debug = true;
   settings = {
-    server = "netcup1.brill-bebop.ts.net:8008";
+    server = "netcup1:8008";
   };
   };
 }
