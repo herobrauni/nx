@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, modulesPath, ... }: {
   # This module contains common configuration that should be applied to all hosts
 
   # Import other common modules
   imports = [
     # Import the sops module for secret management
     ./sops.nix
-    (inputs.nixpkgs.outPath + "/nixos/modules/profiles/minimal.nix")
-    (inputs.nixpkgs.outPath + "/nixos/modules/profiles/headless.nix")
+    (modulesPath + "/profiles/headless.nix")
+    (modulesPath + "/profiles/minimal.nix")
   ];
 
   # Basic system configuration

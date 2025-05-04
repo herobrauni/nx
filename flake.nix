@@ -61,9 +61,6 @@
           system = "x86_64-linux";
           modules = [
             "${toString ./hosts}/${hostName}/configuration.nix"
-            # Common configuration for all hosts
-            "${toString ./modules}/common.nix"
-            # Add role modules as needed, e.g. ../roles/web.nix
             inputs.sops-nix.nixosModules.sops
             # Set hostname based on directory name
             { networking.hostName = hostName; }
