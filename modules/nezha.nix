@@ -9,7 +9,7 @@
     genUuid = true;
     debug = true;
   settings = {
-    server = "netcup1:8008";
+    server = "100.88.88.41:8008";
   };
   };
 }
