@@ -5,6 +5,7 @@
   imports = [
     # Import the sops module for secret management
     ./sops.nix
+    ./nezha.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
   ];

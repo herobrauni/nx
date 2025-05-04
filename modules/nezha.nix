@@ -7,7 +7,7 @@
     enable = true;
     clientSecretFile = "/run/secrets/nezha-client-secret";
     genUuid = true;
-    debug = true;
+    debug = false;
   settings = {
     server = "100.88.88.41:8008";
   };
