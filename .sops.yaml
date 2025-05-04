@@ -2,15 +2,15 @@
 # It defines which keys are used to encrypt/decrypt your secrets
 
 keys:
-# BEGIN ANSIBLE MANAGED BLOCK for &gc4
+  # BEGIN ANSIBLE MANAGED BLOCK for &gc4
   - &gc4 age1c9pkqr3qc5ue7ym3fkdrxr6wz35uw7n7rj2v0d622cpmw7aly9nq33p7vw
-# END ANSIBLE MANAGED BLOCK for &gc4
+  # END ANSIBLE MANAGED BLOCK for &gc4
   # BEGIN ANSIBLE MANAGED BLOCK for alpha1
   - &alpha1 age1axs8juez32nfj4ee2hhc3jsv8r4hgsvcz9p3cud2zvtyt6jurafsupahxk
   # END ANSIBLE MANAGED BLOCK for alpha1
   # Admin users (replace with your actual keys)
-  - &admin_key age1wgkwm0l33qxclrfkgd7fsvw0zz4lw74xsqqrrkrka83nudwrwdcqqul9mz
-
+  - &desk age1wgkwm0l33qxclrfkgd7fsvw0zz4lw74xsqqrrkrka83nudwrwdcqqul9mz
+  - &envy age1tucpv7y4m42yv8cfztu9kpc2kg275hy3hgwc0v0h5mxhypem39csz8ucrp
   # Host keys (replace with your actual host keys)
   # You can get the age public key from your host's SSH key with:
   # `ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub`
@@ -26,7 +26,8 @@ creation_rules:
   - path_regex: .*\.sops\.ya?ml
     key_groups:
       - age:
-          - *admin_key
+          - *desk
+          - *envy
           - *terabit1
           - *deluxhost1
           # Add more hosts as needed
@@ -34,6 +35,6 @@ creation_rules:
           # BEGIN ANSIBLE MANAGED BLOCK for *alpha1
           - *alpha1
           # END ANSIBLE MANAGED BLOCK for *alpha1
-# BEGIN ANSIBLE MANAGED BLOCK for *gc4
+          # BEGIN ANSIBLE MANAGED BLOCK for *gc4
           - *gc4
 # END ANSIBLE MANAGED BLOCK for *gc4
