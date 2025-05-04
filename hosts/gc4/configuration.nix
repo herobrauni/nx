@@ -24,9 +24,9 @@
   boot.loader.grub.device = "/dev/vda";
   swapDevices = [{
     device = "/swapfile";
-    size = 1075;
+    size = 104;
   }];
-  boot.kernelParams = [ "console=tty0" ];
+  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" ];
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBPFkI1tmXLQ5awKEqqoEUMbCalSqARtODdy8nQ18pKk"
@@ -41,23 +41,23 @@
   networking = {
     usePredictableInterfaceNames = false;
     interfaces.eth0.ipv4.addresses = [{
-      address = "104.152.49.57";
-      prefixLength = 25;
+      address = "108.171.193.204";
+      prefixLength = 22;
     }];
     defaultGateway = {
-      address = "104.152.49.1";
+      address = "108.171.192.1";
       interface = "eth0";
     };
     interfaces.eth0.ipv6.addresses = [{
-      address = "2602:fc16:2:3ab::b459";
+      address = "2607:f2d8:6065:1058::a";
       prefixLength = 64;
     }];
     defaultGateway6 = {
-      address = "2602:fc16:2:300::1";
+      address = "2607:f2d8:6065:1000::1";
       interface = "eth0";
     };
     nameservers =
-      [ "8.8.8.8" "8.8.4.4" "2606:4700:4700::1111" "2001:4860:4860::8888" ];
+      [ "1.1.1.1" "8.8.8.8" "2606:4700:4700::1111" "2001:4860:4860::8888" ];
   };
   boot.kernel.sysctl."net.ipv6.conf.eth0.accept_ra" = false;
   boot.kernel.sysctl."net.ipv6.conf.eth0.autoconf" = false;
