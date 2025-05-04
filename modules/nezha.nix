@@ -5,9 +5,9 @@
   services.nezha-agent = {
     enable = true;
     clientSecretFile = "/run/secrets/nezha-client-secret";
-  
-  settings = {
     genUuid = true;
+
+  settings = {
     server = "http://netcup1.brill-bebop.ts.net:8008";
   };
   };
