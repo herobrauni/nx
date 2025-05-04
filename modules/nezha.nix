@@ -7,7 +7,7 @@
     enable = true;
     clientSecretFile = "/run/secrets/nezha-client-secret";
     genUuid = true;
-    debug = false;
+    debug = true;
   settings = {
     server = "netcup1.brill-bebop.ts.net:8008";
   };
