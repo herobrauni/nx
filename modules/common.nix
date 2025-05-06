@@ -1,4 +1,11 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
   # This module contains common configuration that should be applied to all hosts
 
   # Import other common modules
@@ -6,6 +13,7 @@
     # Import the sops module for secret management
     ./sops.nix
     ./nezha.nix
+    ./monitoring.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
   ];
@@ -19,12 +27,17 @@
   # Locale settings
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [ "en_US.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8" ];
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "de_DE.UTF-8/UTF-8"
+    ];
   };
 
   # Console settings
-  console = { keyMap = "us"; };
-
+  console = {
+    keyMap = "us";
+  };
+  services.resolved.enable = true;
   # Common system packages that should be available on all hosts
   environment.systemPackages = with pkgs; [
     # Basic utilities
@@ -79,7 +92,10 @@
 
     # Enable flakes and configure binary cache
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
 
       # Add Garnix as a substituter
@@ -123,7 +139,10 @@
     enable = true;
     useRoutingFeatures = "both";
     extraSetFlags = [ "--ssh" ];
-    extraUpFlags =
-      [ "--ssh" "--reset" "--hostname=${config.networking.hostName}" ];
+    extraUpFlags = [
+      "--ssh"
+      "--reset"
+      "--hostname=${config.networking.hostName}"
+    ];
   };
 }
