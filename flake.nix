@@ -48,6 +48,7 @@
               addresses =
                 if ipv4Config ? addresses then ipv4Config.addresses else [ ];
               hasIpAddress = builtins.length addresses > 0;
+            # If multiple addresses are present, always use the first one.
             in if hasIpAddress then
               (builtins.elemAt addresses 0).address
             else

@@ -2,6 +2,9 @@
 # It defines which keys are used to encrypt/decrypt your secrets
 
 keys:
+# BEGIN ANSIBLE MANAGED BLOCK for &virmach1
+  - &virmach1 age1e2dsxlrfxcz0ynhtm5vlftz6rdahne0jvfxutc2xlqgshr77742qurzj69
+# END ANSIBLE MANAGED BLOCK for &virmach1
   # BEGIN ANSIBLE MANAGED BLOCK for &gc4
   - &gc4 age1c9pkqr3qc5ue7ym3fkdrxr6wz35uw7n7rj2v0d622cpmw7aly9nq33p7vw
   # END ANSIBLE MANAGED BLOCK for &gc4
@@ -38,3 +41,6 @@ creation_rules:
           # BEGIN ANSIBLE MANAGED BLOCK for *gc4
           - *gc4
 # END ANSIBLE MANAGED BLOCK for *gc4
+# BEGIN ANSIBLE MANAGED BLOCK for *virmach1
+          - *virmach1
+# END ANSIBLE MANAGED BLOCK for *virmach1
