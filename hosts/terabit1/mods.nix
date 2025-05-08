@@ -1,4 +1,10 @@
-{ lib, inputs, config, ... }: {
+{
+  lib,
+  inputs,
+  config,
+  ...
+}:
+{
   # force disable tailscale
   # services.tailscale.enable = lib.mkForce false;
   sops.secrets.tskey-auth-k3s = { };
