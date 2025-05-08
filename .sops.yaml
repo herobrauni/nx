@@ -2,6 +2,21 @@
 # It defines which keys are used to encrypt/decrypt your secrets
 
 keys:
+# BEGIN ANSIBLE MANAGED BLOCK for &onidel2
+  - &onidel2 age14emudfwzc5gvqcyckm4vzm8s7yzn0jdgr52sxn5y05hqxxajuqcs5zkhsa
+# END ANSIBLE MANAGED BLOCK for &onidel2
+# BEGIN ANSIBLE MANAGED BLOCK for &gc2
+  - &gc2 age1eh65x2ppqe69pmec2c00na6m2v2e3hw0r9vkw4vnqzggvwjqgqqsct4z22
+# END ANSIBLE MANAGED BLOCK for &gc2
+# BEGIN ANSIBLE MANAGED BLOCK for &onidel1
+  - &onidel1 age1ll99rg4adepvyuaaa55gyckqp7d6jhz75e40q7xmaczu45qurppqd8yay7
+# END ANSIBLE MANAGED BLOCK for &onidel1
+# BEGIN ANSIBLE MANAGED BLOCK for &bakker1
+  - &bakker1 age1ftk09z4wua6u2y7gy65asd5p3vgvhlvkrfvz6mtt7vrgcqdd9u3qh38hs2
+# END ANSIBLE MANAGED BLOCK for &bakker1
+# BEGIN ANSIBLE MANAGED BLOCK for &gc3
+  - &gc3 age1d4pfcjegp5s6fakgwajnw6pxy4la68x9cvaecdvy2eftaj92redqclrlg7
+# END ANSIBLE MANAGED BLOCK for &gc3
 # BEGIN ANSIBLE MANAGED BLOCK for &virmach1
   - &virmach1 age1e2dsxlrfxcz0ynhtm5vlftz6rdahne0jvfxutc2xlqgshr77742qurzj69
 # END ANSIBLE MANAGED BLOCK for &virmach1
@@ -44,3 +59,24 @@ creation_rules:
 # BEGIN ANSIBLE MANAGED BLOCK for *virmach1
           - *virmach1
 # END ANSIBLE MANAGED BLOCK for *virmach1
+# BEGIN ANSIBLE MANAGED BLOCK for *terabit2
+          - *terabit2
+# END ANSIBLE MANAGED BLOCK for *terabit2
+# BEGIN ANSIBLE MANAGED BLOCK for *bakker1
+          - *bakker1
+# END ANSIBLE MANAGED BLOCK for *bakker1
+# BEGIN ANSIBLE MANAGED BLOCK for *onidel1
+          - *onidel1
+# END ANSIBLE MANAGED BLOCK for *onidel1
+# BEGIN ANSIBLE MANAGED BLOCK for *heartbeatit1
+          - *heartbeatit1
+# END ANSIBLE MANAGED BLOCK for *heartbeatit1
+# BEGIN ANSIBLE MANAGED BLOCK for *gc3
+          - *gc3
+# END ANSIBLE MANAGED BLOCK for *gc3
+# BEGIN ANSIBLE MANAGED BLOCK for *gc2
+          - *gc2
+# END ANSIBLE MANAGED BLOCK for *gc2
+# BEGIN ANSIBLE MANAGED BLOCK for *onidel2
+          - *onidel2
+# END ANSIBLE MANAGED BLOCK for *onidel2
