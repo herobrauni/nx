@@ -1,7 +1,8 @@
 name: "cachix"
 on:
-  pull_request:
-  push:
+#   pull_request:
+#   push:
+    workflow_dispatch: # allows manual triggering
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -17,3 +18,4 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix-build
     - run: nix-shell --run "echo OK"
+    
