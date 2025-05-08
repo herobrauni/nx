@@ -2,30 +2,18 @@
 # It defines which keys are used to encrypt/decrypt your secrets
 
 keys:
-# BEGIN ANSIBLE MANAGED BLOCK for &onidel2
   - &onidel2 age14emudfwzc5gvqcyckm4vzm8s7yzn0jdgr52sxn5y05hqxxajuqcs5zkhsa
-# END ANSIBLE MANAGED BLOCK for &onidel2
-# BEGIN ANSIBLE MANAGED BLOCK for &gc2
   - &gc2 age1eh65x2ppqe69pmec2c00na6m2v2e3hw0r9vkw4vnqzggvwjqgqqsct4z22
-# END ANSIBLE MANAGED BLOCK for &gc2
-# BEGIN ANSIBLE MANAGED BLOCK for &onidel1
   - &onidel1 age1ll99rg4adepvyuaaa55gyckqp7d6jhz75e40q7xmaczu45qurppqd8yay7
-# END ANSIBLE MANAGED BLOCK for &onidel1
-# BEGIN ANSIBLE MANAGED BLOCK for &bakker1
   - &bakker1 age1ftk09z4wua6u2y7gy65asd5p3vgvhlvkrfvz6mtt7vrgcqdd9u3qh38hs2
-# END ANSIBLE MANAGED BLOCK for &bakker1
-# BEGIN ANSIBLE MANAGED BLOCK for &gc3
   - &gc3 age1d4pfcjegp5s6fakgwajnw6pxy4la68x9cvaecdvy2eftaj92redqclrlg7
-# END ANSIBLE MANAGED BLOCK for &gc3
-# BEGIN ANSIBLE MANAGED BLOCK for &virmach1
   - &virmach1 age1e2dsxlrfxcz0ynhtm5vlftz6rdahne0jvfxutc2xlqgshr77742qurzj69
-# END ANSIBLE MANAGED BLOCK for &virmach1
-  # BEGIN ANSIBLE MANAGED BLOCK for &gc4
   - &gc4 age1c9pkqr3qc5ue7ym3fkdrxr6wz35uw7n7rj2v0d622cpmw7aly9nq33p7vw
-  # END ANSIBLE MANAGED BLOCK for &gc4
-  # BEGIN ANSIBLE MANAGED BLOCK for alpha1
   - &alpha1 age1axs8juez32nfj4ee2hhc3jsv8r4hgsvcz9p3cud2zvtyt6jurafsupahxk
-  # END ANSIBLE MANAGED BLOCK for alpha1
+  - &terabit1 age1ccc92vh5jvp05zautxvu4hkw4mxkcwmjyle4p4gn8975u5a36gksgmw0q3
+  - &terabit2 age1p8yr44mwsu73zwwv4nfc0sg42v0hyqmnn6repd5wxksaacd5z4vsskpfkn
+  - &deluxhost1 age1v2npyaz98r74l84s5aq94sljdfmwh6u0eez258ska2se9x2t8qsspttxs6
+  - &heartbeatit1 age1c5y39kzr8eqjmlydc6pnhpkesecg89yryajxahchwra3knxunvzqc49gfy
   # Admin users (replace with your actual keys)
   - &desk age1wgkwm0l33qxclrfkgd7fsvw0zz4lw74xsqqrrkrka83nudwrwdcqqul9mz
   - &envy age1tucpv7y4m42yv8cfztu9kpc2kg275hy3hgwc0v0h5mxhypem39csz8ucrp
@@ -34,8 +22,6 @@ keys:
   # `ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub`
   # for remote systems:
   # nix-shell -p ssh-to-age --run 'ssh-keyscan -p 666 1.2.3.4 | ssh-to-age'
-  - &terabit1 age1ccc92vh5jvp05zautxvu4hkw4mxkcwmjyle4p4gn8975u5a36gksgmw0q3
-  - &deluxhost1 age1v2npyaz98r74l84s5aq94sljdfmwh6u0eez258ska2se9x2t8qsspttxs6
   # Add more hosts as needed
   # - &host2 age1anotherhost
 
@@ -50,33 +36,13 @@ creation_rules:
           - *deluxhost1
           # Add more hosts as needed
           # - *host2
-          # BEGIN ANSIBLE MANAGED BLOCK for *alpha1
           - *alpha1
-          # END ANSIBLE MANAGED BLOCK for *alpha1
-          # BEGIN ANSIBLE MANAGED BLOCK for *gc4
           - *gc4
-# END ANSIBLE MANAGED BLOCK for *gc4
-# BEGIN ANSIBLE MANAGED BLOCK for *virmach1
           - *virmach1
-# END ANSIBLE MANAGED BLOCK for *virmach1
-# BEGIN ANSIBLE MANAGED BLOCK for *terabit2
           - *terabit2
-# END ANSIBLE MANAGED BLOCK for *terabit2
-# BEGIN ANSIBLE MANAGED BLOCK for *bakker1
           - *bakker1
-# END ANSIBLE MANAGED BLOCK for *bakker1
-# BEGIN ANSIBLE MANAGED BLOCK for *onidel1
           - *onidel1
-# END ANSIBLE MANAGED BLOCK for *onidel1
-# BEGIN ANSIBLE MANAGED BLOCK for *heartbeatit1
           - *heartbeatit1
-# END ANSIBLE MANAGED BLOCK for *heartbeatit1
-# BEGIN ANSIBLE MANAGED BLOCK for *gc3
           - *gc3
-# END ANSIBLE MANAGED BLOCK for *gc3
-# BEGIN ANSIBLE MANAGED BLOCK for *gc2
           - *gc2
-# END ANSIBLE MANAGED BLOCK for *gc2
-# BEGIN ANSIBLE MANAGED BLOCK for *onidel2
           - *onidel2
-# END ANSIBLE MANAGED BLOCK for *onidel2
