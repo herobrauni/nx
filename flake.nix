@@ -11,9 +11,10 @@
     sops-nix.url = "github:Mic92/sops-nix";
     # Optional: make sops-nix use the same nixpkgs as we do
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    colmena.url = "github:zhaofengli/colmena";
   };
 
-  outputs = { self, nixpkgs, deploy-rs, ... }@inputs:
+  outputs = { self, nixpkgs, deploy-rs, colmena, ... }@inputs:
     let
       # Get all host directories from the hosts folder
       hostDirs = builtins.filter
@@ -104,5 +105,27 @@
       # This is highly advised, and will prevent many possible mistakes
       checks = builtins.mapAttrs
         (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      # Colmena deployment output (flake-based)
+      colmena = {
+        meta = {
+          nixpkgs = import nixpkgs {
+            system = "x86_64-linux";
+          };
+        };
+        # Generate hosts using the same hostDirs logic
+        # Each host can use the same modules as in nixosConfigurations
+        # You can further customize as needed
+      } // builtins.listToAttrs (builtins.map (hostName: {
+        name = hostName;
+        value = { name, nodes, pkgs, ... }: {
+          imports = [
+            "${toString ./hosts}/${hostName}/configuration.nix"
+            inputs.sops-nix.nixosModules.sops
+          ];
+          networking.hostName = hostName;
+          # Optionally, pass hostIP or other specialArgs if needed
+        };
+      }) hostDirs);
+
     };
 }

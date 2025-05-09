@@ -14,6 +14,7 @@
     ./sops.nix
     ./nezha.nix
     ./monitoring.nix
+    ./globalping.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
   ];
