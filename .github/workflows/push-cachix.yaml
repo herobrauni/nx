@@ -13,7 +13,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
       - uses: cachix/cachix-action@v14
         with:
-          name: mycache
+          name: brauni
           # If you chose API tokens for write access OR if you have a private cache
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - run: nix run github:determinatesystems/flake-iter -- build
