@@ -44,17 +44,30 @@
                   interfaceNames = builtins.attrNames interfaces;
                   hasInterfaces = builtins.length interfaceNames > 0;
                   firstInterface = if hasInterfaces then builtins.elemAt interfaceNames 0 else null;
-                  # Get the IP addresses for the first interface
+
+                  # Get the IPv4 addresses for the first interface
                   ipv4Config =
                     if hasInterfaces && interfaces.${firstInterface} ? ipv4 then
                       interfaces.${firstInterface}.ipv4
                     else
                       { };
-                  addresses = if ipv4Config ? addresses then ipv4Config.addresses else [ ];
-                  hasIpAddress = builtins.length addresses > 0;
+                  ipv4Addresses = if ipv4Config ? addresses then ipv4Config.addresses else [ ];
+                  hasIpv4 = builtins.length ipv4Addresses > 0;
+
+                  # Get the IPv6 addresses for the first interface
+                  ipv6Config =
+                    if hasInterfaces && interfaces.${firstInterface} ? ipv6 then
+                      interfaces.${firstInterface}.ipv6
+                    else
+                      { };
+                  ipv6Addresses = if ipv6Config ? addresses then ipv6Config.addresses else [ ];
+                  hasIpv6 = builtins.length ipv6Addresses > 0;
+
                   # If multiple addresses are present, always use the first one.
                 in
-                if hasIpAddress then (builtins.elemAt addresses 0).address else config.networking.hostName;
+                  if hasIpv4 then (builtins.elemAt ipv4Addresses 0).address
+                  else if hasIpv6 then (builtins.elemAt ipv6Addresses 0).address
+                  else config.networking.hostName;
             in
             getHostIP;
         }) hostDirs

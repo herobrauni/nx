@@ -8,6 +8,7 @@
 
   boot.initrd.availableKernelModules = [
     "uhci_hcd"
+    "virtio_scsi"
     "sr_mod"
     "virtio_blk"
     "ahci"
@@ -17,11 +18,11 @@
     "vmw_pvscsi"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d35cd267-956c-4f98-9b88-31959eee1e7f";
+    device = "/dev/disk/by-uuid/eef35166-9e5c-4bfa-84ac-c874ecce8059";
     fsType = "ext4";
   };
 

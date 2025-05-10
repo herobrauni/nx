@@ -8,6 +8,7 @@
 
   boot.initrd.availableKernelModules = [
     "uhci_hcd"
+    "virtio_scsi"
     "sr_mod"
     "virtio_blk"
     "ahci"
@@ -21,7 +22,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d35cd267-956c-4f98-9b88-31959eee1e7f";
+    device = "/dev/disk/by-uuid/7acae7a3-1bf8-44b2-b604-4c7f2aef4c4c";
     fsType = "ext4";
   };
 

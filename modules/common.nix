@@ -1,11 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}:
-{
+{ config, lib, pkgs, modulesPath, ... }: {
   # This module contains common configuration that should be applied to all hosts
 
   # Import other common modules
@@ -15,6 +8,7 @@
     ./nezha.nix
     ./monitoring.nix
     ./globalping.nix
+    ./beszel.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
   ];
@@ -28,16 +22,11 @@
   # Locale settings
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-      "de_DE.UTF-8/UTF-8"
-    ];
+    supportedLocales = [ "en_US.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8" ];
   };
 
   # Console settings
-  console = {
-    keyMap = "us";
-  };
+  console = { keyMap = "us"; };
   services.resolved.enable = true;
   # Common system packages that should be available on all hosts
   environment.systemPackages = with pkgs; [
@@ -55,6 +44,7 @@
     # geekbench_4
     # geekbench_5
   ];
+  programs.fish.enable = true;
 
   # SSH server configuration (common for all servers)
   services.openssh = {
@@ -83,14 +73,10 @@
     trustedInterfaces = [ "tailscale0" ];
 
     # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [
-      config.services.tailscale.port
-    ];
+    allowedUDPPorts = [ config.services.tailscale.port ];
 
     # allow you to SSH in over the public internet
-    allowedTCPPorts = [
-      666
-    ];
+    allowedTCPPorts = [ 666 ];
   };
 
   # System maintenance
@@ -98,7 +84,7 @@
     # Automatic garbage collection
     gc = {
       automatic = true;
-      dates = "weekly";
+      dates = "daily";
       options = "--delete-older-than 2d";
     };
 
@@ -110,10 +96,7 @@
 
     # Enable flakes and configure binary cache
     settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
 
       substituters = [
@@ -155,11 +138,8 @@
     enable = true;
     useRoutingFeatures = "both";
     extraSetFlags = [ "--ssh" ];
-    extraUpFlags = [
-      "--ssh"
-      "--reset"
-      "--hostname=${config.networking.hostName}"
-    ];
+    extraUpFlags =
+      [ "--ssh" "--reset" "--hostname=${config.networking.hostName}" ];
   };
 
   # User brauni with SSH keys and passwordless sudo

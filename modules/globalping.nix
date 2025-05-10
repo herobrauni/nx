@@ -1,33 +1,15 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
+{ config, lib, pkgs, ... }: {
   sops.secrets.globalping-env = { };
 
   virtualisation = {
-    podman = {
-      enable = true;
-    };
+    podman = { enable = true; };
     oci-containers.containers = {
       globalping-probe = {
         image = "globalping/globalping-probe:latest";
         privileged = true;
-        environment = {
-          GP_ADOPTION_TOKEN = "false";
-        };
-        capabilities = {
-          "NET_RAW" = true;
-        };
-        extraOptions = [
-          "--network=host"
-          "--pull=always"
-        ];
-        environmentFiles = [
-          /run/secrets/globalping-env
-        ];
+        capabilities = { "NET_RAW" = true; };
+        extraOptions = [ "--network=host" "--pull=always" ];
+        environmentFiles = [ /run/secrets/globalping-env ];
       };
     };
   };

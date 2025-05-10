@@ -2,6 +2,15 @@
 # It defines which keys are used to encrypt/decrypt your secrets
 
 keys:
+  - &host-c3 age1d8qydeag5df037d0r499sx6jxhpdhvpls0wqvknclzfaz6ydneysrsn83a
+  - &nuyek1 age1jpatkrqnx3utff5u2lepyyvyrfw55nqu898dlumknq2453k5nuqsz3u8d3
+  - &naranja1 age1xewns93yt6k47p07a7qk9yq8fs5l7pp57yydwv5p8a5ycgt3vpvss6g9fy
+  - &host-c1 age187v82kjlkncr2ujkyh68p9n69xzj7sc3nt03du84ght0kx2k9umqwzdz3k
+  - &gc6 age14t0war5s4qx8xtsncs02h6v4d6e9tm6mxfy7zdxt4c0rkz8qapwq6p83xf
+  - &kuroit2 age1dxvx25k7ky7d4ms8v08pvwcsm20y2am84h345vyde2ulupwfjcfsxupu5r
+  - &xtom1 age13d9yftrp3ya0rx5ddxmpucdsthe4632d3e2ljatxqr7md3783uyqfuya46
+  - &hostdzire1 age1qnqnva8tk3axg89sfh08ysug3cwzm5serca9cvdmk5r995mk9ytq30l0as
+  - &kuroit3 age1hndpvvzr29cv37k5pld5tc0qequv54nugv9kduxr8fkkrg63yugqzdmf0y
   - &onidel2 age14emudfwzc5gvqcyckm4vzm8s7yzn0jdgr52sxn5y05hqxxajuqcs5zkhsa
   - &gc2 age1eh65x2ppqe69pmec2c00na6m2v2e3hw0r9vkw4vnqzggvwjqgqqsct4z22
   - &onidel1 age1ll99rg4adepvyuaaa55gyckqp7d6jhz75e40q7xmaczu45qurppqd8yay7
@@ -14,6 +23,7 @@ keys:
   - &terabit2 age1p8yr44mwsu73zwwv4nfc0sg42v0hyqmnn6repd5wxksaacd5z4vsskpfkn
   - &deluxhost1 age1v2npyaz98r74l84s5aq94sljdfmwh6u0eez258ska2se9x2t8qsspttxs6
   - &heartbeatit1 age1c5y39kzr8eqjmlydc6pnhpkesecg89yryajxahchwra3knxunvzqc49gfy
+  - &kuroit1 age1gtdtc6z0dkynkufhu2qgmr2qa6svhf7q6np2v3zpr2wkl8za03es0nayxh
   # Admin users (replace with your actual keys)
   - &desk age1wgkwm0l33qxclrfkgd7fsvw0zz4lw74xsqqrrkrka83nudwrwdcqqul9mz
   - &envy age1tucpv7y4m42yv8cfztu9kpc2kg275hy3hgwc0v0h5mxhypem39csz8ucrp
@@ -34,8 +44,6 @@ creation_rules:
           - *envy
           - *terabit1
           - *deluxhost1
-          # Add more hosts as needed
-          # - *host2
           - *alpha1
           - *gc4
           - *virmach1
@@ -46,3 +54,13 @@ creation_rules:
           - *gc3
           - *gc2
           - *onidel2
+          - *kuroit2
+          - *kuroit3
+          - *xtom1
+          - *kuroit1
+          - *hostdzire1
+          - *host-c1
+          - *gc6
+          - *naranja1
+          - *nuyek1
+          - *host-c3

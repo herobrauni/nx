@@ -4,19 +4,26 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "sr_mod" "virtio_blk" "ahci" "ata_piix" "virtio_pci" "xen_blkfront" "vmw_pvscsi" ];
+  boot.initrd.availableKernelModules = [
+    "uhci_hcd"
+    "sr_mod"
+    "virtio_blk"
+    "ahci"
+    "ata_piix"
+    "virtio_pci"
+    "xen_blkfront"
+    "vmw_pvscsi"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/c21e3ad5-a9bf-4032-9489-ef1cbee31a60";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/c21e3ad5-a9bf-4032-9489-ef1cbee31a60";
+    fsType = "ext4";
+  };
 
   swapDevices = [ ];
 
@@ -24,7 +31,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault false;
   # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
