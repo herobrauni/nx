@@ -24,8 +24,7 @@ jobs:
           name: brauni
           # If you chose API tokens for write access OR if you have a private cache
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-      - run: nix run github:determinatesystems/flake-iter -- build
-
+      - run: cachix watch-exec brauni -- nix run github:determinatesystems/flake-iter -- build
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
