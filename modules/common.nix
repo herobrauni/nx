@@ -116,13 +116,11 @@
       ];
       auto-optimise-store = true;
 
-      # Add Garnix as a substituter
       substituters = [
         "https://brauni.cachix.org"
         "https://cache.nixos.org" # Keep the default cache
       ];
 
-      # Add Garnix's public key to trusted keys
       trusted-public-keys = [
         "brauni.cachix.org-1:AK1gTT3vQZQh2OqWS4rh+DjV9lOlqa834O5pssx2rUw="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" # Default NixOS key
