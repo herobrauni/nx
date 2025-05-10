@@ -167,6 +167,7 @@
     isNormalUser = true;
     description = "brauni";
     extraGroups = [ "wheel" ];
+    shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBPFkI1tmXLQ5awKEqqoEUMbCalSqARtODdy8nQ18pKk"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETmaz2oKUkpoSSeGKQefhFb+PUCEwY9Onh9+q1+hXXt"
