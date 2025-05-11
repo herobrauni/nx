@@ -6,7 +6,7 @@
   # imports = [ ../../modules/k3s-agent.nix ];
   imports = [
     ../../modules/nezha.nix
-    ../../grafana-stack.nix
+    ../../modules/grafana-stack.nix
     ../../modules/uptime-kuma.nix
   ];
 }
