@@ -20,6 +20,7 @@
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   ############### Add by reinstall.sh ###############
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.grub.device = "/dev/vda";
   boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" ];
   services.openssh.enable = true;

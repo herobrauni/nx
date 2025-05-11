@@ -5,20 +5,23 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-     ../../modules/common.nix ./mods.nix];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/common.nix
+    ./mods.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3];
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.efi.efiSysMountPoint = "/efi";
-  swapDevices = [{ device = "/swapfile"; size = 1111; }];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 1111;
+  }];
   boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" ];
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
@@ -33,30 +36,23 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
-    interfaces.eth0.ipv4.addresses = [
-      {
-        address = "193.36.132.34";
-        prefixLength = 24;
-      }
-    ];
+    interfaces.eth0.ipv4.addresses = [{
+      address = "193.36.132.34";
+      prefixLength = 24;
+    }];
     defaultGateway = {
       address = "193.36.132.1";
       interface = "eth0";
     };
-    interfaces.eth0.ipv6.addresses = [
-      {
-        address = "fd7a:115c:a1e0::5201:a21d";
-        prefixLength = 128;
-      }
-    ];
+    interfaces.eth0.ipv6.addresses = [{
+      address = "fd7a:115c:a1e0::5201:a21d";
+      prefixLength = 128;
+    }];
     defaultGateway6 = {
       address = "2a07:e042::1";
       interface = "eth0";
     };
-    nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-    ];
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
   boot.kernel.sysctl."net.ipv6.conf.eth0.accept_ra" = false;
   boot.kernel.sysctl."net.ipv6.conf.eth0.autoconf" = false;
@@ -84,9 +80,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

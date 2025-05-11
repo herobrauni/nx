@@ -2,12 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -26,18 +21,13 @@
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3 ];
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.grub.device = "/dev/vda";
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 69;
-    }
-  ];
-  boot.kernelParams = [
-    "console=ttyS0,115200n8"
-    "console=tty0"
-  ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 69;
+  }];
+  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" ];
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBPFkI1tmXLQ5awKEqqoEUMbCalSqARtODdy8nQ18pKk"
@@ -51,32 +41,24 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
-    interfaces.eth0.ipv4.addresses = [
-      {
-        address = "185.232.84.12";
-        prefixLength = 24;
-      }
-    ];
+    interfaces.eth0.ipv4.addresses = [{
+      address = "185.232.84.12";
+      prefixLength = 24;
+    }];
     defaultGateway = {
       address = "185.232.84.1";
       interface = "eth0";
     };
-    interfaces.eth0.ipv6.addresses = [
-      {
-        address = "2a14:7580:e568:86::1";
-        prefixLength = 64;
-      }
-    ];
+    interfaces.eth0.ipv6.addresses = [{
+      address = "2a14:7580:e568:86::1";
+      prefixLength = 64;
+    }];
     defaultGateway6 = {
       address = "fe80::1";
       interface = "eth0";
     };
-    nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-      "2606:4700:4700::1111"
-      "2001:4860:4860::8888"
-    ];
+    nameservers =
+      [ "1.1.1.1" "8.8.8.8" "2606:4700:4700::1111" "2001:4860:4860::8888" ];
   };
   ###################################################
 

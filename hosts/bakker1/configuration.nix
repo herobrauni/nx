@@ -5,10 +5,11 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-     ../../modules/common.nix ./mods.nix];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/common.nix
+    ./mods.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -18,11 +19,13 @@
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3];
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.grub.device = "/dev/sda";
-  swapDevices = [{ device = "/swapfile"; size = 69; }];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 69;
+  }];
   boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" ];
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
@@ -37,32 +40,24 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
-    interfaces.eth0.ipv4.addresses = [
-      {
-        address = "45.139.163.18";
-        prefixLength = 25;
-      }
-    ];
+    interfaces.eth0.ipv4.addresses = [{
+      address = "45.139.163.18";
+      prefixLength = 25;
+    }];
     defaultGateway = {
       address = "45.139.163.1";
       interface = "eth0";
     };
-    interfaces.eth0.ipv6.addresses = [
-      {
-        address = "2a0e:fd40:103:226::1";
-        prefixLength = 48;
-      }
-    ];
+    interfaces.eth0.ipv6.addresses = [{
+      address = "2a0e:fd40:103:226::1";
+      prefixLength = 48;
+    }];
     defaultGateway6 = {
       address = "2a0e:fd40:103::1";
       interface = "eth0";
     };
-    nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-      "2606:4700:4700::1111"
-      "2001:4860:4860::8888"
-    ];
+    nameservers =
+      [ "1.1.1.1" "8.8.8.8" "2606:4700:4700::1111" "2001:4860:4860::8888" ];
   };
   ###################################################
 
@@ -88,9 +83,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

@@ -5,10 +5,11 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-     ../../modules/common.nix ./mods.nix];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/common.nix
+    ./mods.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -18,9 +19,8 @@
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3];
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.grub.device = "/dev/vda";
   boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" ];
   services.openssh.enable = true;
@@ -36,20 +36,15 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
-    interfaces.eth0.ipv4.addresses = [
-      {
-        address = "165.140.203.145";
-        prefixLength = 25;
-      }
-    ];
+    interfaces.eth0.ipv4.addresses = [{
+      address = "165.140.203.145";
+      prefixLength = 25;
+    }];
     defaultGateway = {
       address = "165.140.203.129";
       interface = "eth0";
     };
-    nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-    ];
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
   ###################################################
 
@@ -75,9 +70,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

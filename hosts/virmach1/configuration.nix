@@ -20,7 +20,7 @@
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3 ];
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.grub.device = "/dev/vda";
   swapDevices = [{
     device = "/swapfile";

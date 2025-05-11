@@ -2,12 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -26,14 +21,12 @@
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3 ];
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.grub.device = "/dev/vda";
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 69;
-    }
-  ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 69;
+  }];
   boot.kernelParams = [ "console=tty0" ];
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
@@ -48,32 +41,24 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
-    interfaces.eth0.ipv4.addresses = [
-      {
-        address = "109.94.170.245";
-        prefixLength = 24;
-      }
-    ];
+    interfaces.eth0.ipv4.addresses = [{
+      address = "109.94.170.245";
+      prefixLength = 24;
+    }];
     defaultGateway = {
       address = "109.94.170.1";
       interface = "eth0";
     };
-    interfaces.eth0.ipv6.addresses = [
-      {
-        address = "2a03:d9c2:100:f9::b98a";
-        prefixLength = 64;
-      }
-    ];
+    interfaces.eth0.ipv6.addresses = [{
+      address = "2a03:d9c2:100:f9::b98a";
+      prefixLength = 64;
+    }];
     defaultGateway6 = {
       address = "2a03:d9c2:100::1";
       interface = "eth0";
     };
-    nameservers = [
-      "8.8.8.8"
-      "8.8.4.4"
-      "2606:4700:4700::1111"
-      "2001:4860:4860::8888"
-    ];
+    nameservers =
+      [ "8.8.8.8" "8.8.4.4" "2606:4700:4700::1111" "2001:4860:4860::8888" ];
   };
   ###################################################
 
