@@ -2,7 +2,7 @@
 # It defines which keys are used to encrypt/decrypt your secrets
 
 keys:
-  - &garry age1l22gpremntl4y0awyc3huxkc5vpypdsj6dqqlww0qclew5kacupq8yyevd
+  - &garry age13k9zm4xt9gps3j0spps2yvg3k6426d52zafefdxu8ya438w5xfzs4mz926
   - &host-c3 age1d8qydeag5df037d0r499sx6jxhpdhvpls0wqvknclzfaz6ydneysrsn83a
   - &nuyek1 age1jpatkrqnx3utff5u2lepyyvyrfw55nqu898dlumknq2453k5nuqsz3u8d3
   - &naranja1 age1xewns93yt6k47p07a7qk9yq8fs5l7pp57yydwv5p8a5ycgt3vpvss6g9fy
