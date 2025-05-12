@@ -8,6 +8,7 @@
         extraOptions = [ "--pull=always" ];
         ports = [ "127.0.0.1:3001:3001" ];
         volumes = [ "uptime-kuma:/app/data" ];
+        capabilities = { "NET_RAW" = true; };
       };
     };
   };
