@@ -5,18 +5,18 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ../../modules/common.nix
-    ./mods.nix
-  ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+     ../../modules/common.nix ./mods.nix];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3 git ];
+  environment.systemPackages = with pkgs; [ python3 git];
   boot.loader.efi.efiSysMountPoint = "/efi";
   boot.kernelParams = [ "console=ttyAMA0,115200n8" "console=tty0" ];
   services.openssh.enable = true;
@@ -30,7 +30,9 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFfL/A140RdlJ1LQQR/lwtPwf0MAn5haqDdXGKWsW8sa"
   ];
   services.openssh.ports = [ 666 ];
-  networking = { usePredictableInterfaceNames = false; };
+  networking = {
+    usePredictableInterfaceNames = false;
+  };
   ###################################################
 
   # networking.hostName = "nixos"; # Define your hostname.
@@ -55,6 +57,9 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
+
+
+  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
