@@ -40,6 +40,9 @@
     fio
     iperf
     ncdu
+    dysk
+    nmon
+    bmon
     # geekbench
     # geekbench_4
     # geekbench_5
