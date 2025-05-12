@@ -81,6 +81,7 @@
     # allow you to SSH in over the public internet
     allowedTCPPorts = [ 666 ];
   };
+  services.qemuGuest.enable = false;
 
   # System maintenance
   nix = {
@@ -96,8 +97,6 @@
       automatic = true;
       dates = [ "weekly" ];
     };
-
-    services.qemuGuest.enable = false;
 
     # Enable flakes and configure binary cache
     settings = {
