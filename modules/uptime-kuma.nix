@@ -1,7 +1,14 @@
 { config, lib, pkgs, ... }: {
   systemd.tmpfiles.rules = [ "d /opt/uptime-kuma 0770 root root -" ];
   virtualisation = {
-    podman = { enable = true; };
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings = {
+        dns_enabled = true;
+        ipv6_enabled = true;
+      };
+    };
     oci-containers.containers = {
       uptime-kuma = {
         image = "louislam/uptime-kuma:beta";
