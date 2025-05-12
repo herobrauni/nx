@@ -97,6 +97,8 @@
       dates = [ "weekly" ];
     };
 
+    services.qemuGuest.enable = false;
+
     # Enable flakes and configure binary cache
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
