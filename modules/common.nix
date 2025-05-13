@@ -62,6 +62,28 @@
   ];
   programs.fish.enable = true;
 
+  virtualisation = {
+    podman = {
+      defaultNetwork.settings = {
+        dns_enabled = true;
+        ipv6_enabled = true;
+        subnets = [
+          {
+            gateway = "172.25.0.1";
+            subnet = "172.25.0.0/23";
+          }
+          {
+            subnet = "fd96:7c2e:b8d2:bf65::/64";
+            gateway = "fd96:7c2e:b8d2:bf65::1";
+          }
+        ];
+      };
+      enable = true;
+      autoPrune.enable = true;
+      dockerCompat = true;
+    };
+  };
+
   # SSH server configuration (common for all servers)
   services.openssh = {
     enable = true;
