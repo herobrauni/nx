@@ -6,7 +6,7 @@
   services.k3s = {
     enable = true;
     tokenFile = "/run/secrets/k3s-token";
-    role = "agent";
+    role = "server";
     serverAddr = "https://k.480p.com:6443";
     extraFlags = ''
       --vpn-auth-file="/run/secrets/vpn-auth-file"
