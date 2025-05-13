@@ -2,6 +2,7 @@
 # It defines which keys are used to encrypt/decrypt your secrets
 
 keys:
+  - &gc1 age13jv42n8gsyrwr8l76azn3vw7v3532j4lq0kf0mkghk7l8vzasapq56qahs
   - &garry age13k9zm4xt9gps3j0spps2yvg3k6426d52zafefdxu8ya438w5xfzs4mz926
   - &host-c3 age1d8qydeag5df037d0r499sx6jxhpdhvpls0wqvknclzfaz6ydneysrsn83a
   - &nuyek1 age1jpatkrqnx3utff5u2lepyyvyrfw55nqu898dlumknq2453k5nuqsz3u8d3
@@ -66,3 +67,4 @@ creation_rules:
           - *nuyek1
           - *host-c3
           - *garry
+          - *gc1
