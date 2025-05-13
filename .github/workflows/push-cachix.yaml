@@ -1,7 +1,7 @@
 name: "cachix"
 on:
-    pull_request:
-    push:
+    # pull_request:
+    # push:
     workflow_dispatch: # allows manual triggering
 jobs:
   build:
