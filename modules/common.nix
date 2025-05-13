@@ -1,4 +1,11 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
   # This module contains common configuration that should be applied to all hosts
 
   # Import other common modules
@@ -22,11 +29,16 @@
   # Locale settings
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [ "en_US.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8" ];
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "de_DE.UTF-8/UTF-8"
+    ];
   };
 
   # Console settings
-  console = { keyMap = "us"; };
+  console = {
+    keyMap = "us";
+  };
   services.resolved.enable = true;
   # Common system packages that should be available on all hosts
   environment.systemPackages = with pkgs; [
@@ -43,6 +55,7 @@
     dysk
     nmon
     bmon
+    screen
     # geekbench
     # geekbench_4
     # geekbench_5
@@ -100,7 +113,10 @@
 
     # Enable flakes and configure binary cache
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
 
       substituters = [
@@ -142,8 +158,11 @@
     enable = true;
     useRoutingFeatures = "both";
     extraSetFlags = [ "--ssh" ];
-    extraUpFlags =
-      [ "--ssh" "--reset" "--hostname=${config.networking.hostName}" ];
+    extraUpFlags = [
+      "--ssh"
+      "--reset"
+      "--hostname=${config.networking.hostName}"
+    ];
   };
 
   # User brauni with SSH keys and passwordless sudo
