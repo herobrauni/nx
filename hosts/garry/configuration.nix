@@ -32,11 +32,20 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
-    interfaces.eth0.ipv4.addresses = [{
-      address = "138.2.152.47";
-      prefixLength = 32;
-    }];
-
+    interfaces.eth0.ipv4.addresses = [
+      {
+        address = "138.2.152.47";
+        prefixLength = 32;
+      }
+      {
+        address = "10.0.0.195";
+        prefixLength = 24;
+      }
+    ];
+    defaultGateway = {
+      address = "10.0.0.1";
+      interface = "eth0";
+    };
   };
   ###################################################
 
