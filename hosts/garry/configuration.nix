@@ -5,18 +5,18 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-     ../../modules/common.nix ./mods.nix];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/common.nix
+    ./mods.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3 git];
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.efi.efiSysMountPoint = "/efi";
   boot.kernelParams = [ "console=ttyAMA0,115200n8" "console=tty0" ];
   services.openssh.enable = true;
@@ -32,6 +32,11 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
+    interfaces.eth0.ipv4.addresses = [{
+      address = "138.2.152.47";
+      prefixLength = 32;
+    }];
+
   };
   ###################################################
 
@@ -57,9 +62,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
