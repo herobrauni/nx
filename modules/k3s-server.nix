@@ -1,5 +1,4 @@
 { lib, inputs, outputs, pkgs, config, hostIP, ... }: {
-
   sops.secrets.k3s-token = { };
   sops.secrets.vpn-auth-file = { };
   boot.kernelModules = [ "nbd" "rbd" "ceph" ];
