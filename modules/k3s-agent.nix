@@ -12,7 +12,6 @@
       --vpn-auth-file=/run/secrets/vpn-auth-file
       --flannel-iface=tailscale0
       --node-external-ip=$''${hostIP config}
-      --resolv-conf=/etc/rancher/k3s/resolv.conf
     '';
     package = pkgs.k3s.overrideAttrs (oldAttrs: {
       installPhase =
