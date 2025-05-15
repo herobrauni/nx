@@ -1,8 +1,7 @@
 { lib, inputs, outputs, pkgs, config, hostIP, ... }: {
-  environment.systemPackages = with pkgs; [ ceph lvm2 ];
   sops.secrets.k3s-token = { };
   sops.secrets.vpn-auth-file = { };
-  boot.kernelModules = [ "nbd" "rbd" "ceph" ];
+  boot.kernelModules = [ "nbd" "rbd" ];
   services.k3s = {
     enable = true;
     tokenFile = "/run/secrets/k3s-token";
