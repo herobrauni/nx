@@ -12,11 +12,20 @@
       --flannel-iface=tailscale0
       --node-external-ip=$''${hostIP config}
     '';
-    package = pkgs.k3s.overrideAttrs (oldAttrs: {
-      installPhase =
-        lib.replaceStrings [ (lib.makeBinPath (oldAttrs.k3sRuntimeDeps)) ]
-        [ (lib.makeBinPath (oldAttrs.k3sRuntimeDeps ++ [ pkgs.tailscale ])) ]
-        oldAttrs.installPhase;
-    });
+    package =
+      let
+        patchedUtilLinux = pkgs.util-linuxMinimal.overrideAttrs (prev: {
+          patches = (prev.patches or []) ++ [ ./fix-mount-regression.patch ];
+        });
+        k3sWithPatchedUtilLinux = pkgs.k3s.override {
+          util-linux = patchedUtilLinux;
+        };
+      in
+        k3sWithPatchedUtilLinux.overrideAttrs (oldAttrs: {
+          installPhase =
+            lib.replaceStrings [ (lib.makeBinPath (oldAttrs.k3sRuntimeDeps)) ]
+            [ (lib.makeBinPath (oldAttrs.k3sRuntimeDeps ++ [ pkgs.tailscale ])) ]
+            oldAttrs.installPhase;
+        });
   };
 }

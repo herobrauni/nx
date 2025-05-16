@@ -5,9 +5,9 @@
   imports = [
     # Import the sops module for secret management
     ./sops.nix
-    # ./nezha.nix
+    ./nezha.nix
     ./monitoring.nix
-    # ./globalping.nix
+    ./globalping.nix
     ./beszel.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
