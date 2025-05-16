@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-stable, modulesPath, ... }: {
+{ config, lib, pkgs, modulesPath, ... }: {
   # This module contains common configuration that should be applied to all hosts
 
   # Import other common modules
@@ -12,6 +12,12 @@
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
   ];
+
+  # Override pkgs-stable to allow for stable packages
+  _module.args.pkgs-stable = import inputs.nixpkgs-unstable { 
+    inherit (pkgs.stdenv.hostPlatform) system;
+    inherit (config.nixpkgs) config;
+  };
 
   # Basic system configuration
   time = {
@@ -48,7 +54,7 @@
     # geekbench
     # geekbench_4
     # geekbench_5
-  ]) ++ (with pkgs-stable; [ mount]);
+  ]) ++ (with pkgs-stable; [ mount ]);
   programs.fish.enable = true;
   boot.supportedFilesystems = [ "nfs" ];
 
