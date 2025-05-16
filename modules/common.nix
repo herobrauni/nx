@@ -46,6 +46,7 @@
     screen
     nfs-utils
     mount
+    util-linux
     
     # geekbench
     # geekbench_4
