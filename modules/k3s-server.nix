@@ -1,17 +1,7 @@
 { lib, inputs, outputs, pkgs, config, hostIP, ... }: {
   sops.secrets.k3s-token = { };
   sops.secrets.vpn-auth-file = { };
-  boot.kernelModules = [
-    "nbd"
-    "rbd"
-    "br_netfilter"
-    "ip_conntrack"
-    "ip_vs"
-    "ip_vs_rr"
-    "ip_vs_wrr"
-    "ip_vs_sh"
-    "overlay"
-  ];
+  boot.kernelModules = [ "nbd" "rbd" "br_netfilter" ];
   services.k3s = {
     enable = true;
     tokenFile = "/run/secrets/k3s-token";
@@ -32,13 +22,7 @@
       "--disable coredns"
       "--disable-network-policy"
     ];
-    package = let
-      patchedUtilLinux = pkgs.util-linuxMinimal.overrideAttrs (prev: {
-        patches = (prev.patches or [ ]) ++ [ ./fix-mount-regression.patch ];
-      });
-      k3sWithPatchedUtilLinux =
-        pkgs.k3s.override { util-linux = patchedUtilLinux; };
-    in k3sWithPatchedUtilLinux.overrideAttrs (oldAttrs: {
+    package = pkgs.k3s.overrideAttrs (oldAttrs: {
       installPhase =
         lib.replaceStrings [ (lib.makeBinPath (oldAttrs.k3sRuntimeDeps)) ]
         [ (lib.makeBinPath (oldAttrs.k3sRuntimeDeps ++ [ pkgs.tailscale ])) ]
