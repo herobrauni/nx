@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{ config, lib, pkgs, pkgs-stable, modulesPath, ... }: {
   # This module contains common configuration that should be applied to all hosts
 
   # Import other common modules
@@ -29,7 +29,7 @@
   console = { keyMap = "us"; };
   services.resolved.enable = true;
   # Common system packages that should be available on all hosts
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     # Basic utilities
     git
     wget
@@ -48,7 +48,7 @@
     # geekbench
     # geekbench_4
     # geekbench_5
-  ];
+  ]) ++ (with pkgs-stable; [ util-linux ]);
   programs.fish.enable = true;
   boot.supportedFilesystems = [ "nfs" ];
 
