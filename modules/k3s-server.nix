@@ -1,7 +1,17 @@
 { lib, inputs, outputs, pkgs, config, hostIP, ... }: {
   sops.secrets.k3s-token = { };
   sops.secrets.vpn-auth-file = { };
-  boot.kernelModules = [ "nbd" "rbd" ];
+  boot.kernelModules = [
+    "nbd"
+    "rbd"
+    "br_netfilter"
+    "ip_conntrack"
+    "ip_vs"
+    "ip_vs_rr"
+    "ip_vs_wrr"
+    "ip_vs_sh"
+    "overlay"
+  ];
   services.k3s = {
     enable = true;
     tokenFile = "/run/secrets/k3s-token";
@@ -35,7 +45,4 @@
         oldAttrs.installPhase;
     });
   };
-  networking.firewall.interfaces.tailscale0.allowedTCPPorts =
-    [ 6443 2379 2380 8472 10250 51820 51821 5001 ];
-  networking.firewall.trustedInterfaces = [ "tailscale0" ]; # for clustering
 }
