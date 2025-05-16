@@ -88,7 +88,7 @@
           specialArgs = {
             inherit inputs;
             hostIP = self.hostIPs.${hostName};
-            
+            pkgs-stable = nixpkgs-stable.legacyPackages.${system};
           };
         };
       }) hostDirs);
