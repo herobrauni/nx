@@ -48,7 +48,7 @@
     # geekbench
     # geekbench_4
     # geekbench_5
-  ]) ++ (with pkgs-stable; [ util-linux ]);
+  ]) ++ (with pkgs-stable; [ util-linux mount mount-util-linux]);
   programs.fish.enable = true;
   boot.supportedFilesystems = [ "nfs" ];
 
