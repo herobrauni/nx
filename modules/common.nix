@@ -11,10 +11,11 @@
     ./beszel.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
+    ./
   ];
 
   # Override pkgs-stable to allow for stable packages
-  _module.args.pkgs-stable = import inputs.nixpkgs-unstable { 
+  _module.args.pkgs-stable = import inputs.nixpkgs-stable { 
     inherit (pkgs.stdenv.hostPlatform) system;
     inherit (config.nixpkgs) config;
   };
