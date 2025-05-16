@@ -5,8 +5,8 @@
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nix doesn't need the full history, this should be the default ¯\_(ツ)_/¯
-    # nixpkgs.url =
-      # "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
+    nixpkgs-unstable.url =
+      "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -17,7 +17,7 @@
       "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, deploy-rs, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-unstable, deploy-rs, ... }@inputs:
     let
       # Get all host directories from the hosts folder
       hostDirs = builtins.filter
@@ -90,6 +90,7 @@
             inherit inputs;
             hostIP = self.hostIPs.${hostName};
             pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+            pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
           };
         };
       }) hostDirs);
