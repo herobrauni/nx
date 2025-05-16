@@ -2,6 +2,7 @@
 # It defines which keys are used to encrypt/decrypt your secrets
 
 keys:
+  - &kuroit4 age1a0yj8xjdg6s2papug34hdnvj9fer3raxvqrrqmaj029nd7nnpc4qyk4qqa
   - &hostsailor1 age1wv9fg9l37l92try4wuszkmy350g0lesk6p8dpymjyp84mcwlpavs086ew5
   - &gc5 age1kw8glmr5qcxenx39qm44n9jltn6xg7w7re0eq5ra663uxg2lp3eswegmyj
   - &gc1 age13jv42n8gsyrwr8l76azn3vw7v3532j4lq0kf0mkghk7l8vzasapq56qahs
@@ -72,3 +73,4 @@ creation_rules:
           - *gc1
           - *gc5
           - *hostsailor1
+          - *kuroit4
