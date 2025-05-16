@@ -5,9 +5,9 @@
   imports = [
     # Import the sops module for secret management
     ./sops.nix
-    ./nezha.nix
+    # ./nezha.nix
     ./monitoring.nix
-    ./globalping.nix
+    # ./globalping.nix
     ./beszel.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
@@ -29,7 +29,7 @@
   console = { keyMap = "us"; };
   services.resolved.enable = true;
   # Common system packages that should be available on all hosts
-  environment.systemPackages = (with pkgs-stable; [
+  environment.systemPackages = (with pkgs; [
     # Basic utilities
     git
     wget

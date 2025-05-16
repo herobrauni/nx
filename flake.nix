@@ -5,8 +5,9 @@
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nix doesn't need the full history, this should be the default ¯\_(ツ)_/¯
-    nixpkgs.url =
-      "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
+    # nixpkgs.url =
+    #   "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     deploy-rs.url = "github:serokell/deploy-rs";
     sops-nix.url = "github:Mic92/sops-nix";
