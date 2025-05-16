@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{ config, lib, pkgs, pkgs-stable, modulesPath, ... }: {
   # This module contains common configuration that should be applied to all hosts
 
   # Import other common modules
@@ -11,14 +11,7 @@
     ./beszel.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
-    ./
   ];
-
-  # Override pkgs-stable to allow for stable packages
-  _module.args.pkgs-stable = import inputs.nixpkgs-stable { 
-    inherit (pkgs.stdenv.hostPlatform) system;
-    inherit (config.nixpkgs) config;
-  };
 
   # Basic system configuration
   time = {
@@ -36,7 +29,7 @@
   console = { keyMap = "us"; };
   services.resolved.enable = true;
   # Common system packages that should be available on all hosts
-  environment.systemPackages = (with pkgs; [
+  environment.systemPackages = (with pkgs-stable; [
     # Basic utilities
     git
     wget
@@ -52,10 +45,13 @@
     bmon
     screen
     nfs-utils
+    mount
+    
     # geekbench
     # geekbench_4
     # geekbench_5
-  ]) ++ (with pkgs-stable; [ mount ]);
+  ]);
+
   programs.fish.enable = true;
   boot.supportedFilesystems = [ "nfs" ];
 

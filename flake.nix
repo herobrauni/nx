@@ -88,6 +88,7 @@
           specialArgs = {
             inherit inputs;
             hostIP = self.hostIPs.${hostName};
+            
           };
         };
       }) hostDirs);
