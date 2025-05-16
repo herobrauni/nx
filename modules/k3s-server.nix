@@ -4,6 +4,7 @@
   boot.kernelModules = [ "nbd" "rbd" "br_netfilter" ];
   services.k3s = {
     enable = true;
+    gracefulNodeShutdown.enable = true;
     tokenFile = "/run/secrets/k3s-token";
     role = "server";
     serverAddr = "https://k.480p.com:6443";
