@@ -98,10 +98,10 @@
     enable = true;
 
     # always allow traffic from your Tailscale network
-    trustedInterfaces = [ "tailscale0" ];
+    trustedInterfaces = [ "tailscale0" "cni+" ];
 
     # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ config.services.tailscale.port 8285 8472 ];
+    allowedUDPPorts = [ config.services.tailscale.port ];
 
     # allow you to SSH in over the public internet
     allowedTCPPorts = [ 666 ];
