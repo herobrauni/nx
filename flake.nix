@@ -7,24 +7,18 @@
     # nix doesn't need the full history, this should be the default ¯\_(ツ)_/¯
     nixpkgs.url =
       "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     deploy-rs.url = "github:serokell/deploy-rs";
     sops-nix.url = "github:Mic92/sops-nix";
     # Optional: make sops-nix use the same nixpkgs as we do
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    determinate.url =
-      "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, deploy-rs, ... }@inputs:
+  outputs = { self, nixpkgs, deploy-rs, ... }@inputs:
     let
       # Get all host directories from the hosts folder
       hostDirs = builtins.filter
         (name: (builtins.readDir ./hosts)."${name}" == "directory")
         (builtins.attrNames (builtins.readDir ./hosts));
-      system = "x86_64-linux";
-
     in {
       # Dynamic host discovery for NixOS configurations
       # Calculate host IPs once to reuse in both nixosConfigurations and deploy
@@ -79,7 +73,7 @@
       nixosConfigurations = builtins.listToAttrs (builtins.map (hostName: {
         name = hostName;
         value = nixpkgs.lib.nixosSystem {
-          system = system;
+          system = "x86_64-linux";
           modules = [
             "${toString ./hosts}/${hostName}/configuration.nix"
             inputs.sops-nix.nixosModules.sops
@@ -89,7 +83,6 @@
           specialArgs = {
             inherit inputs;
             hostIP = self.hostIPs.${hostName};
-            pkgs-stable = nixpkgs-stable.legacyPackages.${system};
           };
         };
       }) hostDirs);
