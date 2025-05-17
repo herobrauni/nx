@@ -48,7 +48,8 @@
       address = "2a0d:8142::1";
       interface = "eth0";
     };
-    nameservers = [ "2606:4700:4700::1111" "2001:4860:4860::8888" ];
+    nameservers = [ "100.100.100.100" "1.1.1.1" "2606:4700:4700::1111" ];
+    search = [ "brill-bebop.ts.net" ];
     hosts = {
       "2a01:4f8:c010:d56::2" = [ "github.com" ];
       "2a01:4f8:c010:d56::3" = [ "api.github.com" ];

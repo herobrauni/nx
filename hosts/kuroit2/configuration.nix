@@ -5,10 +5,11 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-     ../../modules/common.nix ./mods.nix];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/common.nix
+    ./mods.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -18,11 +19,13 @@
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-
   ############### Add by reinstall.sh ###############
-  environment.systemPackages = with pkgs; [ python3 git];
+  environment.systemPackages = with pkgs; [ python3 git ];
   boot.loader.grub.device = "/dev/vda";
-  swapDevices = [{ device = "/swapfile"; size = 1110; }];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 1110;
+  }];
   boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" ];
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
@@ -37,30 +40,24 @@
   services.openssh.ports = [ 666 ];
   networking = {
     usePredictableInterfaceNames = false;
-    interfaces.eth0.ipv4.addresses = [
-      {
-        address = "178.239.171.16";
-        prefixLength = 25;
-      }
-    ];
+    interfaces.eth0.ipv4.addresses = [{
+      address = "178.239.171.16";
+      prefixLength = 25;
+    }];
     defaultGateway = {
       address = "178.239.171.1";
       interface = "eth0";
     };
-    interfaces.eth0.ipv6.addresses = [
-      {
-        address = "fd7a:115c:a1e0::7f01:3480";
-        prefixLength = 128;
-      }
-    ];
+    interfaces.eth0.ipv6.addresses = [{
+      address = "fd7a:115c:a1e0::7f01:3480";
+      prefixLength = 128;
+    }];
     defaultGateway6 = {
       address = "2a05:4140:700::1";
       interface = "eth0";
     };
-    nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-    ];
+    nameservers = [ "100.100.100.100" "1.1.1.1" "2606:4700:4700::1111" ];
+    search = [ "brill-bebop.ts.net" ];
   };
   ###################################################
 
@@ -86,9 +83,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

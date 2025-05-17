@@ -52,8 +52,8 @@
       address = "2a12:bec4:1822::";
       interface = "eth0";
     };
-    nameservers =
-      [ "1.1.1.1" "8.8.8.8" "2606:4700:4700::1111" "2001:4860:4860::8888" ];
+    nameservers = [ "100.100.100.100" "1.1.1.1" "2606:4700:4700::1111" ];
+    search = [ "brill-bebop.ts.net" ];
   };
   boot.kernel.sysctl."net.ipv6.conf.eth0.accept_ra" = false;
   boot.kernel.sysctl."net.ipv6.conf.eth0.autoconf" = false;
