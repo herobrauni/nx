@@ -1,7 +1,7 @@
 { lib, inputs, outputs, pkgs, config, hostIP, ... }: {
   sops.secrets.k3s-token = { };
   sops.secrets.vpn-auth-file = { };
-  boot.kernelModules = [ "nbd" "rbd" "br_netfilter" ];
+  boot.kernelModules = [ "nbd" "rbd" "br_netfilter" "ceph" ];
   services.k3s = {
     enable = true;
     gracefulNodeShutdown.enable = true;
@@ -12,6 +12,7 @@
       "--vpn-auth-file=/run/secrets/vpn-auth-file"
       "--flannel-iface=tailscale0"
       "--node-external-ip=${hostIP config}"
+      "--resolv-conf=/run/systemd/resolve/resolv.conf"
     ];
     package = let
       patchedUtilLinux = pkgs.util-linuxMinimal.overrideAttrs (prev: {

@@ -1,7 +1,7 @@
 { lib, inputs, outputs, pkgs, config, hostIP, ... }: {
   sops.secrets.k3s-token = { };
   sops.secrets.vpn-auth-file = { };
-  boot.kernelModules = [ "nbd" "rbd" "br_netfilter" ];
+  boot.kernelModules = [ "nbd" "rbd" "br_netfilter" "ceph" ];
   services.k3s = {
     enable = true;
     gracefulNodeShutdown.enable = true;
@@ -22,6 +22,7 @@
       "--write-kubeconfig-mode 0644"
       "--disable coredns"
       "--disable-network-policy"
+      "--resolv-conf=/run/systemd/resolve/resolv.conf"
     ];
     package = pkgs.k3s.overrideAttrs (oldAttrs: {
       installPhase =
