@@ -27,4 +27,5 @@
         oldAttrs.installPhase;
     });
   };
+  systemd.services.k3s.path = [ pkgs.tailscale ];
 }

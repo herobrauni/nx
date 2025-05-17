@@ -24,11 +24,6 @@
       "--disable-network-policy"
       "--resolv-conf=/run/systemd/resolve/resolv.conf"
     ];
-    package = pkgs.k3s.overrideAttrs (oldAttrs: {
-      installPhase =
-        lib.replaceStrings [ (lib.makeBinPath (oldAttrs.k3sRuntimeDeps)) ]
-        [ (lib.makeBinPath (oldAttrs.k3sRuntimeDeps ++ [ pkgs.tailscale ])) ]
-        oldAttrs.installPhase;
-    });
   };
+  systemd.services.k3s.path = [ pkgs.tailscale ];
 }

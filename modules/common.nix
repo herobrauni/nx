@@ -45,6 +45,7 @@
     bmon
     screen
     nfs-utils
+    dig
     # geekbench
     # geekbench_4
     # geekbench_5
