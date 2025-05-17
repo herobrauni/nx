@@ -1,13 +1,8 @@
 { lib, inputs, outputs, pkgs, config, hostIP, ... }: {
-  sops.secrets.k3s-token = { };
-  sops.secrets.vpn-auth-file = { };
-  boot.kernelModules = [ "nbd" "rbd" "br_netfilter" "ceph" ];
+  imports = [ ./k3s.nix ];
   services.k3s = {
     enable = true;
-    gracefulNodeShutdown.enable = true;
-    tokenFile = "/run/secrets/k3s-token";
     role = "server";
-    serverAddr = "https://k.480p.com:6443";
     extraFlags = toString [
       "--vpn-auth-file=/run/secrets/vpn-auth-file"
       "--flannel-iface=tailscale0"
@@ -25,5 +20,4 @@
       "--resolv-conf=/run/systemd/resolve/resolv.conf"
     ];
   };
-  systemd.services.k3s.path = [ pkgs.tailscale ];
 }
