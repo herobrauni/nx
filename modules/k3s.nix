@@ -8,5 +8,10 @@
     serverAddr = "https://k.480p.com:6443";
   };
   systemd.services.k3s.path = [ pkgs.tailscale ];
-  services.tailscale.enable = lib.mkForce false;
+  # networking.firewall.enable = lib.mkForce false;
+  services.k3s.package = pkgs.k3s.override {
+    util-linux = pkgs.util-linuxMinimal.overrideAttrs (prev: {
+      patches = (prev.patches or [ ]) ++ [ ./fix-mount-regression.patch ];
+    });
+  };
 }

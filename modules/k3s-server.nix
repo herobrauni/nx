@@ -16,7 +16,7 @@
       "--embedded-registry"
       "--write-kubeconfig-mode 0644"
       "--disable coredns"
-      "--disable-network-policy"
+      # "--disable-network-policy"
       "--resolv-conf=/run/systemd/resolve/resolv.conf"
     ];
   };
