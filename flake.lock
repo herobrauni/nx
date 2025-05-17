@@ -8,6 +8,7 @@
       },
       "locked": {
         "lastModified": 1727447169,
+        "narHash": "sha256-3KyjMPUKHkiWhwR91J1YchF6zb6gvckCAY1jOE+ne0U=",
         "owner": "serokell",
         "repo": "deploy-rs",
         "rev": "aa07eb05537d4cd025e2310397a6adcedfe72c76",
@@ -54,6 +55,7 @@
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1747179050,
+        "narHash": "sha256-qhFMmDkeJX9KJwr5H32f1r7Prs7XbQWtO0h3V0a0rFY=",
         "ref": "nixos-unstable",
         "rev": "adaa24fbf46737f3f1b5497bf64bae750f82942e",
         "shallow": true,
@@ -82,6 +84,7 @@
       },
       "locked": {
         "lastModified": 1746485181,
+        "narHash": "sha256-PxrrSFLaC7YuItShxmYbMgSuFFuwxBB+qsl9BZUnRvg=",
         "owner": "Mic92",
         "repo": "sops-nix",
         "rev": "e93ee1d900ad264d65e9701a5c6f895683433386",
