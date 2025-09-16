@@ -30,7 +30,7 @@ jobs:
       - run: nix flake update
       - run: cachix watch-exec brauni -- nix run github:determinatesystems/flake-iter -- build
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: Bump flake.lock
           branch: main
